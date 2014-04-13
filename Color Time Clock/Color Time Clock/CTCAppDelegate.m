@@ -65,16 +65,28 @@
 - (void)updateDisplayForDate:(NSDate *)aDate {
 	
 	NSImage *result = [NSImage imageWithSize:NSMakeSize(1024, 1024) flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
-		[CTCReference drawClockInRect:NSRectToCGRect(dstRect)
-								context:[[NSGraphicsContext currentContext] graphicsPort]
-								   date:aDate];
+		CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
+		CGContextClearRect(context, dstRect);
+		[CTCReference drawClockInRect:NSRectToCGRect(NSInsetRect(dstRect,32.0,32.0))
+							  context:context
+								 date:aDate];
 		return YES;
 	}];
 	[[NSApplication sharedApplication] setApplicationIconImage:result];
 	self.clockImageView.image = result;
 	//	self.statusItem.image = result;
+
+	NSImage *statusResult = [NSImage imageWithSize:NSMakeSize(16, 16) flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
+		CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
+		CGContextClearRect(context, dstRect);
+		[CTCReference drawClockInRect:NSRectToCGRect(NSInsetRect(dstRect,0.5,0.5))
+							  context:context
+								 date:aDate];
+		return YES;
+	}];
+
 	
-	self.menuExtraImageView.image = result;
+	self.menuExtraImageView.image = statusResult;
 	self.menuExtraTextField.stringValue = [CTCReference hourNameForDate:aDate];
 	
 	NSString *timeString = [CTCReference timeStringForDate:aDate];

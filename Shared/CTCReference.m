@@ -137,8 +137,9 @@ static NSArray *S_colorNameArray = nil;
 	CGContextBeginPath(aContext);
 	CGContextMoveToPoint(aContext, centerPoint.x, centerPoint.y);
 	//	CGContextAddLineToPoint(aContext, centerPoint.x, CGRectGetMinY(aRect));
+	CGFloat radius = floor(ABS(CGRectGetMaxY(aRect)-centerPoint.y) * 0.90);
 	CGContextAddArc(aContext, centerPoint.x, centerPoint.y,
-					ABS(CGRectGetMaxY(aRect)-centerPoint.y), baseAngle + M_PI / 180.0 * percentFill * 360.0, baseAngle, 1);
+					radius, baseAngle + M_PI / 180.0 * percentFill * 360.0, baseAngle, 1);
 	CGContextAddLineToPoint(aContext, centerPoint.x, centerPoint.y);
 	CGContextClosePath(aContext);
 	CGContextFillPath(aContext);
