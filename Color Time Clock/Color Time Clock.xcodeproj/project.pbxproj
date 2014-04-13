@@ -1,0 +1,488 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F2CA3E4118FAB9D3006EDA54 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2CA3E4018FAB9D3006EDA54 /* Cocoa.framework */; };
+		F2CA3E4B18FAB9D3006EDA54 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2CA3E4918FAB9D3006EDA54 /* InfoPlist.strings */; };
+		F2CA3E4D18FAB9D3006EDA54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CA3E4C18FAB9D3006EDA54 /* main.m */; };
+		F2CA3E5118FAB9D3006EDA54 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F2CA3E4F18FAB9D3006EDA54 /* Credits.rtf */; };
+		F2CA3E5418FAB9D3006EDA54 /* CTCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CA3E5318FAB9D3006EDA54 /* CTCAppDelegate.m */; };
+		F2CA3E5718FAB9D3006EDA54 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CA3E5518FAB9D3006EDA54 /* MainMenu.xib */; };
+		F2CA3E5918FAB9D3006EDA54 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CA3E5818FAB9D3006EDA54 /* Images.xcassets */; };
+		F2CA3E6018FAB9D3006EDA54 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2CA3E5F18FAB9D3006EDA54 /* XCTest.framework */; };
+		F2CA3E6118FAB9D3006EDA54 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2CA3E4018FAB9D3006EDA54 /* Cocoa.framework */; };
+		F2CA3E6918FAB9D3006EDA54 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2CA3E6718FAB9D3006EDA54 /* InfoPlist.strings */; };
+		F2CA3E6B18FAB9D3006EDA54 /* Color_Time_ClockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CA3E6A18FAB9D3006EDA54 /* Color_Time_ClockTests.m */; };
+		F2CA3E7718FABE1A006EDA54 /* CTCUpdateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CA3E7618FABE1A006EDA54 /* CTCUpdateHelper.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2CA3E6218FAB9D3006EDA54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2CA3E3518FAB9D3006EDA54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2CA3E3C18FAB9D3006EDA54;
+			remoteInfo = "Color Time Clock";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F2CA3E3D18FAB9D3006EDA54 /* Color Time Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Color Time Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CA3E4018FAB9D3006EDA54 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F2CA3E4318FAB9D3006EDA54 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F2CA3E4418FAB9D3006EDA54 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F2CA3E4518FAB9D3006EDA54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F2CA3E4818FAB9D3006EDA54 /* Color Time Clock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Color Time Clock-Info.plist"; sourceTree = "<group>"; };
+		F2CA3E4A18FAB9D3006EDA54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F2CA3E4C18FAB9D3006EDA54 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F2CA3E4E18FAB9D3006EDA54 /* Color Time Clock-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Color Time Clock-Prefix.pch"; sourceTree = "<group>"; };
+		F2CA3E5018FAB9D3006EDA54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F2CA3E5218FAB9D3006EDA54 /* CTCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTCAppDelegate.h; sourceTree = "<group>"; };
+		F2CA3E5318FAB9D3006EDA54 /* CTCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTCAppDelegate.m; sourceTree = "<group>"; };
+		F2CA3E5618FAB9D3006EDA54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F2CA3E5818FAB9D3006EDA54 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F2CA3E5E18FAB9D3006EDA54 /* Color Time ClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Color Time ClockTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CA3E5F18FAB9D3006EDA54 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F2CA3E6618FAB9D3006EDA54 /* Color Time ClockTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Color Time ClockTests-Info.plist"; sourceTree = "<group>"; };
+		F2CA3E6818FAB9D3006EDA54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F2CA3E6A18FAB9D3006EDA54 /* Color_Time_ClockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Color_Time_ClockTests.m; sourceTree = "<group>"; };
+		F2CA3E7518FABE1A006EDA54 /* CTCUpdateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCUpdateHelper.h; path = ../../Shared/CTCUpdateHelper.h; sourceTree = "<group>"; };
+		F2CA3E7618FABE1A006EDA54 /* CTCUpdateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCUpdateHelper.m; path = ../../Shared/CTCUpdateHelper.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2CA3E3A18FAB9D3006EDA54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CA3E4118FAB9D3006EDA54 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CA3E5B18FAB9D3006EDA54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CA3E6118FAB9D3006EDA54 /* Cocoa.framework in Frameworks */,
+				F2CA3E6018FAB9D3006EDA54 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F2CA3E3418FAB9D3006EDA54 = {
+			isa = PBXGroup;
+			children = (
+				F2CA3E4618FAB9D3006EDA54 /* Color Time Clock */,
+				F2CA3E6418FAB9D3006EDA54 /* Color Time ClockTests */,
+				F2CA3E3F18FAB9D3006EDA54 /* Frameworks */,
+				F2CA3E3E18FAB9D3006EDA54 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F2CA3E3E18FAB9D3006EDA54 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2CA3E3D18FAB9D3006EDA54 /* Color Time Clock.app */,
+				F2CA3E5E18FAB9D3006EDA54 /* Color Time ClockTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2CA3E3F18FAB9D3006EDA54 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2CA3E4018FAB9D3006EDA54 /* Cocoa.framework */,
+				F2CA3E5F18FAB9D3006EDA54 /* XCTest.framework */,
+				F2CA3E4218FAB9D3006EDA54 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2CA3E4218FAB9D3006EDA54 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2CA3E4318FAB9D3006EDA54 /* AppKit.framework */,
+				F2CA3E4418FAB9D3006EDA54 /* CoreData.framework */,
+				F2CA3E4518FAB9D3006EDA54 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F2CA3E4618FAB9D3006EDA54 /* Color Time Clock */ = {
+			isa = PBXGroup;
+			children = (
+				F2CA3E7518FABE1A006EDA54 /* CTCUpdateHelper.h */,
+				F2CA3E7618FABE1A006EDA54 /* CTCUpdateHelper.m */,
+				F2CA3E5218FAB9D3006EDA54 /* CTCAppDelegate.h */,
+				F2CA3E5318FAB9D3006EDA54 /* CTCAppDelegate.m */,
+				F2CA3E5518FAB9D3006EDA54 /* MainMenu.xib */,
+				F2CA3E5818FAB9D3006EDA54 /* Images.xcassets */,
+				F2CA3E4718FAB9D3006EDA54 /* Supporting Files */,
+			);
+			path = "Color Time Clock";
+			sourceTree = "<group>";
+		};
+		F2CA3E4718FAB9D3006EDA54 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F2CA3E4818FAB9D3006EDA54 /* Color Time Clock-Info.plist */,
+				F2CA3E4918FAB9D3006EDA54 /* InfoPlist.strings */,
+				F2CA3E4C18FAB9D3006EDA54 /* main.m */,
+				F2CA3E4E18FAB9D3006EDA54 /* Color Time Clock-Prefix.pch */,
+				F2CA3E4F18FAB9D3006EDA54 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F2CA3E6418FAB9D3006EDA54 /* Color Time ClockTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2CA3E6A18FAB9D3006EDA54 /* Color_Time_ClockTests.m */,
+				F2CA3E6518FAB9D3006EDA54 /* Supporting Files */,
+			);
+			path = "Color Time ClockTests";
+			sourceTree = "<group>";
+		};
+		F2CA3E6518FAB9D3006EDA54 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F2CA3E6618FAB9D3006EDA54 /* Color Time ClockTests-Info.plist */,
+				F2CA3E6718FAB9D3006EDA54 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2CA3E3C18FAB9D3006EDA54 /* Color Time Clock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2CA3E6E18FAB9D3006EDA54 /* Build configuration list for PBXNativeTarget "Color Time Clock" */;
+			buildPhases = (
+				F2CA3E3918FAB9D3006EDA54 /* Sources */,
+				F2CA3E3A18FAB9D3006EDA54 /* Frameworks */,
+				F2CA3E3B18FAB9D3006EDA54 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Color Time Clock";
+			productName = "Color Time Clock";
+			productReference = F2CA3E3D18FAB9D3006EDA54 /* Color Time Clock.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F2CA3E5D18FAB9D3006EDA54 /* Color Time ClockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2CA3E7118FAB9D3006EDA54 /* Build configuration list for PBXNativeTarget "Color Time ClockTests" */;
+			buildPhases = (
+				F2CA3E5A18FAB9D3006EDA54 /* Sources */,
+				F2CA3E5B18FAB9D3006EDA54 /* Frameworks */,
+				F2CA3E5C18FAB9D3006EDA54 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2CA3E6318FAB9D3006EDA54 /* PBXTargetDependency */,
+			);
+			name = "Color Time ClockTests";
+			productName = "Color Time ClockTests";
+			productReference = F2CA3E5E18FAB9D3006EDA54 /* Color Time ClockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2CA3E3518FAB9D3006EDA54 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CTC;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = TheCodingMonkeys;
+				TargetAttributes = {
+					F2CA3E5D18FAB9D3006EDA54 = {
+						TestTargetID = F2CA3E3C18FAB9D3006EDA54;
+					};
+				};
+			};
+			buildConfigurationList = F2CA3E3818FAB9D3006EDA54 /* Build configuration list for PBXProject "Color Time Clock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2CA3E3418FAB9D3006EDA54;
+			productRefGroup = F2CA3E3E18FAB9D3006EDA54 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2CA3E3C18FAB9D3006EDA54 /* Color Time Clock */,
+				F2CA3E5D18FAB9D3006EDA54 /* Color Time ClockTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2CA3E3B18FAB9D3006EDA54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CA3E4B18FAB9D3006EDA54 /* InfoPlist.strings in Resources */,
+				F2CA3E5918FAB9D3006EDA54 /* Images.xcassets in Resources */,
+				F2CA3E5118FAB9D3006EDA54 /* Credits.rtf in Resources */,
+				F2CA3E5718FAB9D3006EDA54 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CA3E5C18FAB9D3006EDA54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CA3E6918FAB9D3006EDA54 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2CA3E3918FAB9D3006EDA54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CA3E7718FABE1A006EDA54 /* CTCUpdateHelper.m in Sources */,
+				F2CA3E4D18FAB9D3006EDA54 /* main.m in Sources */,
+				F2CA3E5418FAB9D3006EDA54 /* CTCAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CA3E5A18FAB9D3006EDA54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CA3E6B18FAB9D3006EDA54 /* Color_Time_ClockTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F2CA3E6318FAB9D3006EDA54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2CA3E3C18FAB9D3006EDA54 /* Color Time Clock */;
+			targetProxy = F2CA3E6218FAB9D3006EDA54 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F2CA3E4918FAB9D3006EDA54 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2CA3E4A18FAB9D3006EDA54 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F2CA3E4F18FAB9D3006EDA54 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2CA3E5018FAB9D3006EDA54 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F2CA3E5518FAB9D3006EDA54 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2CA3E5618FAB9D3006EDA54 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		F2CA3E6718FAB9D3006EDA54 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2CA3E6818FAB9D3006EDA54 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F2CA3E6C18FAB9D3006EDA54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F2CA3E6D18FAB9D3006EDA54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F2CA3E6F18FAB9D3006EDA54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Color Time Clock/Color Time Clock-Prefix.pch";
+				INFOPLIST_FILE = "Color Time Clock/Color Time Clock-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F2CA3E7018FAB9D3006EDA54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Color Time Clock/Color Time Clock-Prefix.pch";
+				INFOPLIST_FILE = "Color Time Clock/Color Time Clock-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F2CA3E7218FAB9D3006EDA54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Color Time Clock.app/Contents/MacOS/Color Time Clock";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Color Time Clock/Color Time Clock-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Color Time ClockTests/Color Time ClockTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F2CA3E7318FAB9D3006EDA54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Color Time Clock.app/Contents/MacOS/Color Time Clock";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Color Time Clock/Color Time Clock-Prefix.pch";
+				INFOPLIST_FILE = "Color Time ClockTests/Color Time ClockTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2CA3E3818FAB9D3006EDA54 /* Build configuration list for PBXProject "Color Time Clock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CA3E6C18FAB9D3006EDA54 /* Debug */,
+				F2CA3E6D18FAB9D3006EDA54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2CA3E6E18FAB9D3006EDA54 /* Build configuration list for PBXNativeTarget "Color Time Clock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CA3E6F18FAB9D3006EDA54 /* Debug */,
+				F2CA3E7018FAB9D3006EDA54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F2CA3E7118FAB9D3006EDA54 /* Build configuration list for PBXNativeTarget "Color Time ClockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CA3E7218FAB9D3006EDA54 /* Debug */,
+				F2CA3E7318FAB9D3006EDA54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2CA3E3518FAB9D3006EDA54 /* Project object */;
+}
