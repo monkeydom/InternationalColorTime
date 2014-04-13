@@ -14,6 +14,8 @@ static NSArray *S_colorNameArray = nil;
 
 @implementation CTCReference
 
+// http://www.phrenopolis.com/colorclock/
+
 + (void)initialize {
 	if ([self isEqual:[CTCReference class]]) {
 		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

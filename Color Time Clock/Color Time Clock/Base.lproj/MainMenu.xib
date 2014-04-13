@@ -359,7 +359,7 @@
                         </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ddj-9G-YTc"/>
                     </imageView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dbO-Cw-dx5">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbO-Cw-dx5">
                         <rect key="frame" x="18" y="18" width="220" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="GMb-5N-KQI">
@@ -368,7 +368,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xqm-In-Y3O">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xqm-In-Y3O">
                         <rect key="frame" x="242" y="18" width="220" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="owZ-uT-hdh">
@@ -405,8 +405,8 @@
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Flj-IV-G9W"/>
                 </imageView>
-                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="brT-jO-4aV">
-                    <rect key="frame" x="17" y="2" width="38" height="17"/>
+                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="brT-jO-4aV">
+                    <rect key="frame" x="16" y="4" width="38" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="0d3-uX-okn">
                         <font key="font" metaFont="system"/>
@@ -414,8 +414,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zzN-vU-FSE">
-                    <rect key="frame" x="-29" y="-7" width="101" height="32"/>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zzN-vU-FSE">
+                    <rect key="frame" x="-6" y="-7" width="65" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="pfz-XF-9KM">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -429,7 +429,7 @@
             <constraints>
                 <constraint firstItem="zzN-vU-FSE" firstAttribute="top" secondItem="I41-7Y-LCe" secondAttribute="top" id="4ZS-kL-Kul"/>
                 <constraint firstAttribute="trailing" secondItem="brT-jO-4aV" secondAttribute="trailing" constant="1" id="E55-sx-ZYz"/>
-                <constraint firstAttribute="centerY" secondItem="brT-jO-4aV" secondAttribute="centerY" id="PBd-4P-8Ec"/>
+                <constraint firstAttribute="centerY" secondItem="brT-jO-4aV" secondAttribute="centerY" constant="2" id="PBd-4P-8Ec"/>
                 <constraint firstItem="Epz-A0-tky" firstAttribute="leading" secondItem="I41-7Y-LCe" secondAttribute="leading" id="PaY-fp-D75"/>
                 <constraint firstItem="brT-jO-4aV" firstAttribute="leading" secondItem="Epz-A0-tky" secondAttribute="trailing" constant="2" id="Qsg-Io-ElS"/>
                 <constraint firstAttribute="bottom" secondItem="zzN-vU-FSE" secondAttribute="bottom" id="T48-jc-GJS"/>

@@ -24,17 +24,6 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
-	NSStatusBar *bar = [NSStatusBar systemStatusBar];
-	self.statusItem = ({
-		NSStatusItem *item = [bar statusItemWithLength:NSVariableStatusItemLength];
-		item.view = self.menuExtraView;
-		item.title = @"blahblah";
-		item.menu = self.statusItemMenu;
-		[item setTarget:self];
-		[item setAction:@selector(menuItemAction:)];
-		[item setHighlightMode:YES];
-		item;
-	});
 	
 	[CTCUpdateHelper executeBlock:^{
 		//		NSLog(@"%s min %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
@@ -42,6 +31,18 @@
 	} andScheduleWithGranulatrity:kCTCUpdateGranularityMinutes];
 
 	
+	NSStatusBar *bar = [NSStatusBar systemStatusBar];
+	self.statusItem = ({
+		NSStatusItem *item = [bar statusItemWithLength:NSVariableStatusItemLength];
+		item.view = self.menuExtraView;
+		//item.title = @"blahblah";
+		item.menu = self.statusItemMenu;
+		[item setTarget:self];
+		[item setAction:@selector(menuItemAction:)];
+		[item setHighlightMode:YES];
+		item;
+	});
+
 	/*
 	__block NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
 	[CTCUpdateHelper executeBlock:^{
