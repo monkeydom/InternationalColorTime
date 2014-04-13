@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface CTCAppDelegate : NSObject <NSApplicationDelegate>
+@property (nonatomic, strong) IBOutlet NSImageView *clockImageView;
+@property (weak) IBOutlet NSTextField *leftLabel;
+@property (weak) IBOutlet NSTextField *rightLabel;
 
 @property (assign) IBOutlet NSWindow *window;
 

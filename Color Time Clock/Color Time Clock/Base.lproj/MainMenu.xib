@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5023"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -13,6 +14,9 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="CTCAppDelegate">
             <connections>
+                <outlet property="clockImageView" destination="dsU-Fi-Jxb" id="a5n-yW-tIJ"/>
+                <outlet property="leftLabel" destination="dbO-Cw-dx5" id="GrN-K0-RKs"/>
+                <outlet property="rightLabel" destination="Xqm-In-Y3O" id="wNZ-4b-2YB"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -669,11 +673,52 @@
         <window title="Color Time Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <rect key="contentRect" x="335" y="390" width="480" height="359"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="359"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsU-Fi-Jxb">
+                        <rect key="frame" x="102" y="69" width="276" height="277"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="dsU-Fi-Jxb" secondAttribute="height" id="Lja-XQ-gau"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ddj-9G-YTc"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dbO-Cw-dx5">
+                        <rect key="frame" x="18" y="18" width="220" height="33"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="GMb-5N-KQI">
+                            <font key="font" size="38" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xqm-In-Y3O">
+                        <rect key="frame" x="242" y="18" width="220" height="33"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="owZ-uT-hdh">
+                            <dateFormatter key="formatter" timeStyle="short" id="qn5-QP-zfI"/>
+                            <font key="font" size="38" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Xqm-In-Y3O" secondAttribute="trailing" constant="20" id="46T-VD-q4G"/>
+                    <constraint firstItem="dsU-Fi-Jxb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="10" id="AgG-2s-8jB"/>
+                    <constraint firstAttribute="bottom" secondItem="dsU-Fi-Jxb" secondAttribute="bottom" constant="69" id="ICf-eU-rPU"/>
+                    <constraint firstItem="Xqm-In-Y3O" firstAttribute="top" secondItem="dbO-Cw-dx5" secondAttribute="top" id="OrF-6r-TpW"/>
+                    <constraint firstItem="Xqm-In-Y3O" firstAttribute="leading" secondItem="dbO-Cw-dx5" secondAttribute="trailing" constant="8" id="UUV-uW-AQQ"/>
+                    <constraint firstItem="dsU-Fi-Jxb" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="14" id="XPf-Ck-Lhq"/>
+                    <constraint firstItem="dbO-Cw-dx5" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="aUv-QF-c9Q"/>
+                    <constraint firstAttribute="centerX" secondItem="dsU-Fi-Jxb" secondAttribute="centerX" id="dXc-O4-Omv"/>
+                    <constraint firstItem="dbO-Cw-dx5" firstAttribute="top" secondItem="dsU-Fi-Jxb" secondAttribute="bottom" constant="18" id="vfk-9D-fhf"/>
+                    <constraint firstItem="Xqm-In-Y3O" firstAttribute="width" secondItem="dbO-Cw-dx5" secondAttribute="width" id="vvl-v7-FtE"/>
+                </constraints>
             </view>
         </window>
     </objects>

@@ -19,6 +19,7 @@
 		F2CA3E6918FAB9D3006EDA54 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2CA3E6718FAB9D3006EDA54 /* InfoPlist.strings */; };
 		F2CA3E6B18FAB9D3006EDA54 /* Color_Time_ClockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CA3E6A18FAB9D3006EDA54 /* Color_Time_ClockTests.m */; };
 		F2CA3E7718FABE1A006EDA54 /* CTCUpdateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CA3E7618FABE1A006EDA54 /* CTCUpdateHelper.m */; };
+		F2CA3E7B18FAEBEA006EDA54 /* CTCReference.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CA3E7A18FAEBEA006EDA54 /* CTCReference.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		F2CA3E6A18FAB9D3006EDA54 /* Color_Time_ClockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Color_Time_ClockTests.m; sourceTree = "<group>"; };
 		F2CA3E7518FABE1A006EDA54 /* CTCUpdateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCUpdateHelper.h; path = ../../Shared/CTCUpdateHelper.h; sourceTree = "<group>"; };
 		F2CA3E7618FABE1A006EDA54 /* CTCUpdateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCUpdateHelper.m; path = ../../Shared/CTCUpdateHelper.m; sourceTree = "<group>"; };
+		F2CA3E7918FAEBEA006EDA54 /* CTCReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCReference.h; path = ../../Shared/CTCReference.h; sourceTree = "<group>"; };
+		F2CA3E7A18FAEBEA006EDA54 /* CTCReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCReference.m; path = ../../Shared/CTCReference.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 			children = (
 				F2CA3E7518FABE1A006EDA54 /* CTCUpdateHelper.h */,
 				F2CA3E7618FABE1A006EDA54 /* CTCUpdateHelper.m */,
+				F2CA3E7918FAEBEA006EDA54 /* CTCReference.h */,
+				F2CA3E7A18FAEBEA006EDA54 /* CTCReference.m */,
 				F2CA3E5218FAB9D3006EDA54 /* CTCAppDelegate.h */,
 				F2CA3E5318FAB9D3006EDA54 /* CTCAppDelegate.m */,
 				F2CA3E5518FAB9D3006EDA54 /* MainMenu.xib */,
@@ -260,6 +265,7 @@
 			files = (
 				F2CA3E7718FABE1A006EDA54 /* CTCUpdateHelper.m in Sources */,
 				F2CA3E4D18FAB9D3006EDA54 /* main.m in Sources */,
+				F2CA3E7B18FAEBEA006EDA54 /* CTCReference.m in Sources */,
 				F2CA3E5418FAB9D3006EDA54 /* CTCAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

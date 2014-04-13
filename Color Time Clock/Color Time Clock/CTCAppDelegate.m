@@ -8,69 +8,78 @@
 
 #import "CTCAppDelegate.h"
 #import "CTCUpdateHelper.h"
+@import Quartz;
+#import "CTCReference.h"
 
 @implementation CTCAppDelegate
 
++ (void)drawClockInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate {
+	// extract the necessary information
+	static NSCalendar *calendar = nil;
+	if (!calendar) {
+		calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		[calendar setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+		// UTC does not have daylight saving time, which is what we need here
+	}
+    NSDateComponents *utcComponents = [calendar components:(NSHourCalendarUnit| NSMinuteCalendarUnit) fromDate:aDate];
+    
+    NSInteger currentHour = [utcComponents hour];
+    NSInteger nextHour = (currentHour + 1) % 24;
+
+	CGFloat percentFill = [utcComponents minute] / 60.0;
+	
+	// draw
+	CGColorRef firstColor = [CTCReference CGColorForHour:currentHour];
+	CGColorRef secondColor = [CTCReference CGColorForHour:nextHour];
+	
+	CGContextSetFillColorWithColor(aContext, firstColor);
+	CGContextFillEllipseInRect(aContext, aRect);
+
+	CGPoint centerPoint = CGPointMake(CGRectGetMidX(aRect), CGRectGetMidY(aRect));
+	CGFloat baseAngle = 270 * M_PI/180.0;
+	CGContextSetFillColorWithColor(aContext, secondColor);
+	CGContextBeginPath(aContext);
+	CGContextMoveToPoint(aContext, centerPoint.x, centerPoint.y);
+	//	CGContextAddLineToPoint(aContext, centerPoint.x, CGRectGetMinY(aRect));
+	CGContextAddArc(aContext, centerPoint.x, centerPoint.y,
+					ABS(CGRectGetMaxY(aRect)-centerPoint.y), baseAngle + M_PI / 180.0 * percentFill * 360.0, baseAngle, 1);
+	CGContextAddLineToPoint(aContext, centerPoint.x, centerPoint.y);
+	CGContextClosePath(aContext);
+	CGContextFillPath(aContext);
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	// Insert code here to initialize your application
 
-	dispatch_block_t hundredthBlock = [CTCUpdateHelper executeBlock:^{
-		NSLog(@"%s hundredth %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
-	} andScheduleWithGranulatrity:kCTCUpdateGranularityHundredth];
-	
-
-	
-	dispatch_block_t tenthBlock = [CTCUpdateHelper executeBlock:^{
-		NSLog(@"%s tenth %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
-	} andScheduleWithGranulatrity:kCTCUpdateGranularityTenth];
-	
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		[CTCUpdateHelper cancelRegularExecutionOfBlock:tenthBlock];
-		[CTCUpdateHelper cancelRegularExecutionOfBlock:hundredthBlock];
-	});
-	
-	[CTCUpdateHelper executeBlock:^{
-		NSLog(@"%s sec %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
-	} andScheduleWithGranulatrity:kCTCUpdateGranularitySeconds];
 	[CTCUpdateHelper executeBlock:^{
 		NSLog(@"%s min %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
+		[self updateDisplayForDate:[NSDate date]];
 	} andScheduleWithGranulatrity:kCTCUpdateGranularityMinutes];
+
+	
+	/*
+	__block NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
 	[CTCUpdateHelper executeBlock:^{
-		NSLog(@"%s hour %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
-	} andScheduleWithGranulatrity:kCTCUpdateGranularityHours];
-	//	[self updateTimeImagesAccordingToNow];
+		now += 60.0;
+		NSLog(@"%s min %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
+		[self updateDisplayForDate:[NSDate dateWithTimeIntervalSinceReferenceDate:now]];
+	} andScheduleWithGranulatrity:kCTCUpdateGranularityTenth];
+	/**/
 }
 
-- (void)updateTimeImagesAndScheduleNext {
-/*
-    NSDate *nowDate;
-    
-    SEL callMe = @selector(updateTimeImagesAndScheduleNext);
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:callMe object:nil];
+- (void)updateDisplayForDate:(NSDate *)aDate {
 	
-    if (isDebugMode) {
-        nowDate = [NSDate dateWithTimeIntervalSinceReferenceDate:debugTimeInterval];
-        debugTimeInterval = debugTimeInterval + 60;
-    } else {
-        nowDate = [NSDate date];
-    }
-    
-    //update icon
-    [(NSImageView *)tile.contentView setImage: [BCMUtil BCMAppIconForDate:nowDate]];
-    [tile display];
+	NSImage *result = [NSImage imageWithSize:NSMakeSize(1024, 1024) flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
+		[CTCAppDelegate drawClockInRect:NSRectToCGRect(dstRect)
+								context:[[NSGraphicsContext currentContext] graphicsPort]
+								   date:aDate];
+		return YES;
+	}];
+	[[NSApplication sharedApplication] setApplicationIconImage:result];
+	self.clockImageView.image = result;
 	
-    //next update
-    NSTimeInterval intervalToNextMinute = [nowDate timeIntervalSinceReferenceDate];
+	self.leftLabel.stringValue = [CTCReference timeStringForDate:aDate];
+	self.rightLabel.objectValue = aDate;
 	
-    if (isDebugMode) {
-        intervalToNextMinute = 5. - (((int)intervalToNextMinute) % 5);
-    } else {
-        intervalToNextMinute = 60. - (((int)intervalToNextMinute) % 60);
-    }
-	
-    [self performSelector:callMe withObject:nil afterDelay:intervalToNextMinute];
-*/
 }
-
 @end
