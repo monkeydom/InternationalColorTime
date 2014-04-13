@@ -86,7 +86,7 @@ static NSArray *S_colorNameArray = nil;
 	return S_colorNameArray[anHour % 24];
 }
 
-+ (NSString *)timeStringForDate:(NSDate *)aDate {
++ (NSDateComponents *)UTCDateComponentsForDate:(NSDate *)aDate {
 	static NSCalendar *calendar = nil;
 	if (!calendar) {
 		calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -94,10 +94,50 @@ static NSArray *S_colorNameArray = nil;
 		// UTC does not have daylight saving time, which is what we need here
 	}
     NSDateComponents *utcComponents = [calendar components:(NSHourCalendarUnit| NSMinuteCalendarUnit) fromDate:aDate];
-    
-	NSString *result = [NSString stringWithFormat:@"%@ : %02ld",[self nameForHour:utcComponents.hour],utcComponents.minute];
+	return utcComponents;
+}
 
+
++ (NSString *)hourNameForDate:(NSDate *)aDate {
+	NSString *result = [self nameForHour:[self UTCDateComponentsForDate:aDate].hour];
 	return result;
 }
+
++ (NSString *)timeStringForDate:(NSDate *)aDate {
+    NSDateComponents *components = [self UTCDateComponentsForDate:aDate];
+	NSString *result = [NSString stringWithFormat:@"%@ : %02ld",[self nameForHour:components.hour],components.minute];
+	return result;
+}
+
+
++ (void)drawClockInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate {
+	// extract the necessary information
+    NSDateComponents *utcComponents = [self UTCDateComponentsForDate:aDate];
+    
+    NSInteger currentHour = [utcComponents hour];
+    NSInteger nextHour = (currentHour + 1) % 24;
+	
+	CGFloat percentFill = [utcComponents minute] / 60.0;
+	
+	// draw
+	CGColorRef firstColor = [CTCReference CGColorForHour:currentHour];
+	CGColorRef secondColor = [CTCReference CGColorForHour:nextHour];
+	
+	CGContextSetFillColorWithColor(aContext, firstColor);
+	CGContextFillEllipseInRect(aContext, aRect);
+	
+	CGPoint centerPoint = CGPointMake(CGRectGetMidX(aRect), CGRectGetMidY(aRect));
+	CGFloat baseAngle = 270 * M_PI/180.0;
+	CGContextSetFillColorWithColor(aContext, secondColor);
+	CGContextBeginPath(aContext);
+	CGContextMoveToPoint(aContext, centerPoint.x, centerPoint.y);
+	//	CGContextAddLineToPoint(aContext, centerPoint.x, CGRectGetMinY(aRect));
+	CGContextAddArc(aContext, centerPoint.x, centerPoint.y,
+					ABS(CGRectGetMaxY(aRect)-centerPoint.y), baseAngle + M_PI / 180.0 * percentFill * 360.0, baseAngle, 1);
+	CGContextAddLineToPoint(aContext, centerPoint.x, centerPoint.y);
+	CGContextClosePath(aContext);
+	CGContextFillPath(aContext);
+}
+
 
 @end

@@ -11,48 +11,33 @@
 @import Quartz;
 #import "CTCReference.h"
 
+@interface CTCAppDelegate ()
+@property (strong) IBOutlet NSTextField *menuExtraTextField;
+@property (nonatomic, strong) NSStatusItem *statusItem;
+@property (strong) IBOutlet NSView *menuExtraView;
+@property (strong) IBOutlet NSImageView *menuExtraImageView;
+@property (strong) IBOutlet NSMenuItem *topStatusItemMenuItem;
+@property (strong) IBOutlet NSMenu *statusItemMenu;
+@end
+
 @implementation CTCAppDelegate
 
-+ (void)drawClockInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate {
-	// extract the necessary information
-	static NSCalendar *calendar = nil;
-	if (!calendar) {
-		calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		[calendar setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-		// UTC does not have daylight saving time, which is what we need here
-	}
-    NSDateComponents *utcComponents = [calendar components:(NSHourCalendarUnit| NSMinuteCalendarUnit) fromDate:aDate];
-    
-    NSInteger currentHour = [utcComponents hour];
-    NSInteger nextHour = (currentHour + 1) % 24;
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
-	CGFloat percentFill = [utcComponents minute] / 60.0;
+	NSStatusBar *bar = [NSStatusBar systemStatusBar];
+	self.statusItem = ({
+		NSStatusItem *item = [bar statusItemWithLength:NSVariableStatusItemLength];
+		item.view = self.menuExtraView;
+		item.title = @"blahblah";
+		item.menu = self.statusItemMenu;
+		[item setTarget:self];
+		[item setAction:@selector(menuItemAction:)];
+		[item setHighlightMode:YES];
+		item;
+	});
 	
-	// draw
-	CGColorRef firstColor = [CTCReference CGColorForHour:currentHour];
-	CGColorRef secondColor = [CTCReference CGColorForHour:nextHour];
-	
-	CGContextSetFillColorWithColor(aContext, firstColor);
-	CGContextFillEllipseInRect(aContext, aRect);
-
-	CGPoint centerPoint = CGPointMake(CGRectGetMidX(aRect), CGRectGetMidY(aRect));
-	CGFloat baseAngle = 270 * M_PI/180.0;
-	CGContextSetFillColorWithColor(aContext, secondColor);
-	CGContextBeginPath(aContext);
-	CGContextMoveToPoint(aContext, centerPoint.x, centerPoint.y);
-	//	CGContextAddLineToPoint(aContext, centerPoint.x, CGRectGetMinY(aRect));
-	CGContextAddArc(aContext, centerPoint.x, centerPoint.y,
-					ABS(CGRectGetMaxY(aRect)-centerPoint.y), baseAngle + M_PI / 180.0 * percentFill * 360.0, baseAngle, 1);
-	CGContextAddLineToPoint(aContext, centerPoint.x, centerPoint.y);
-	CGContextClosePath(aContext);
-	CGContextFillPath(aContext);
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-
 	[CTCUpdateHelper executeBlock:^{
-		NSLog(@"%s min %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
+		//		NSLog(@"%s min %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
 		[self updateDisplayForDate:[NSDate date]];
 	} andScheduleWithGranulatrity:kCTCUpdateGranularityMinutes];
 
@@ -67,18 +52,28 @@
 	/**/
 }
 
+- (IBAction)menuItemAction:(id)aSender {
+	NSLog(@"%s %@",__FUNCTION__,aSender);
+}
+
 - (void)updateDisplayForDate:(NSDate *)aDate {
 	
 	NSImage *result = [NSImage imageWithSize:NSMakeSize(1024, 1024) flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
-		[CTCAppDelegate drawClockInRect:NSRectToCGRect(dstRect)
+		[CTCReference drawClockInRect:NSRectToCGRect(dstRect)
 								context:[[NSGraphicsContext currentContext] graphicsPort]
 								   date:aDate];
 		return YES;
 	}];
 	[[NSApplication sharedApplication] setApplicationIconImage:result];
 	self.clockImageView.image = result;
+	//	self.statusItem.image = result;
 	
-	self.leftLabel.stringValue = [CTCReference timeStringForDate:aDate];
+	self.menuExtraImageView.image = result;
+	self.menuExtraTextField.stringValue = [CTCReference hourNameForDate:aDate];
+	
+	NSString *timeString = [CTCReference timeStringForDate:aDate];
+	self.topStatusItemMenuItem.title = timeString;
+	self.leftLabel.stringValue = timeString;
 	self.rightLabel.objectValue = aDate;
 	
 }

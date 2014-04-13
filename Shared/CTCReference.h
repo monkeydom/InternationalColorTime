@@ -13,4 +13,8 @@
 + (NSString *)timeStringForDate:(NSDate *)aDate;
 + (CGColorRef)CGColorForHour:(NSInteger)anHour;
 + (NSString *)nameForHour:(NSInteger)anHour;
++ (NSString *)hourNameForDate:(NSDate *)aDate;
++ (NSDateComponents *)UTCDateComponentsForDate:(NSDate *)aDate;
++ (void)drawClockInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate;
++ (void)drawHourRingInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate;
 @end
