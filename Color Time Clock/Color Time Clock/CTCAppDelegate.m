@@ -67,7 +67,9 @@
 	NSImage *result = [NSImage imageWithSize:NSMakeSize(1024, 1024) flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
 		CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
 		CGContextClearRect(context, dstRect);
-		[CTCReference drawClockInRect:NSRectToCGRect(NSInsetRect(dstRect,32.0,32.0))
+		CGFloat outside = 220.;
+		[CTCReference drawHourRingInRect:dstRect width:outside context:context date:aDate];
+		[CTCReference drawClockInRect:NSRectToCGRect(NSInsetRect(dstRect,outside,outside))
 							  context:context
 								 date:aDate];
 		return YES;

@@ -18,7 +18,7 @@ static NSArray *S_colorNameArray = nil;
 
 + (void)initialize {
 	if ([self isEqual:[CTCReference class]]) {
-		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+		CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
 		
 		S_colorsArray = @[
 						  (__bridge id)CGColorCreate(colorSpace, (CGFloat[4]){0xff / 255., 0x00/255.0, 0x00/255.0, 1.0}), // red
@@ -44,7 +44,7 @@ static NSArray *S_colorNameArray = nil;
 						  (__bridge id)CGColorCreate(colorSpace, (CGFloat[4]){0xac / 255., 0x6f/255.0, 0xd5/255.0, 1.0}), // lavender
 						  (__bridge id)CGColorCreate(colorSpace, (CGFloat[4]){0xa8 / 255., 0x03/255.0, 0x58/255.0, 1.0}), // maroon
 						  (__bridge id)CGColorCreate(colorSpace, (CGFloat[4]){0xff / 255., 0x00/255.0, 0xff/255.0, 1.0}), // pink
-						  (__bridge id)CGColorCreate(colorSpace, (CGFloat[4]){0xff / 255., 0x36/255.0, 0x7f/255.0, 1.0}), // rose
+						  (__bridge id)CGColorCreate(colorSpace, (CGFloat[4]){0xdf / 255., 0x16/255.0, 0x6f/255.0, 1.0}), // rose
 						  ];
 		CFRelease(colorSpace);
 		
@@ -111,8 +111,40 @@ static NSArray *S_colorNameArray = nil;
 }
 
 
-+ (void)drawHourRingInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate {
++ (void)drawHourRingInRect:(CGRect)aRect width:(CGFloat)aWidth context:(CGContextRef)aContext date:(NSDate *)aDate {
+	NSInteger midnight = [self UTCDateComponentsForDate:[NSDate dateWithNaturalLanguageString:@"midnight"]].hour;
+	NSInteger thisHour = [self UTCDateComponentsForDate:aDate].hour;
+	aWidth = aWidth / 3.0;
+	CGFloat fullRadius = CGRectGetWidth(aRect) / 2.0;
+	CGFloat outerRadius = fullRadius - aWidth/2.0;
+	CGFloat innerRadius = outerRadius - aWidth;
+	CGFloat baseAngle = 270 * M_PI/180.0;
+	CGFloat pieceAngle = 360.0 / 12.0 * M_PI/180.0;
+	CGPoint centerPoint = CGPointMake(CGRectGetMidX(aRect), CGRectGetMidY(aRect));
+	for (NSInteger position=23; position >= 0; position--) {
+		CGFloat lesserAngle = baseAngle + (position - 0.5) * pieceAngle;
+		CGFloat biggerAngle = lesserAngle + pieceAngle;
+		CGFloat radiusInset = position >= 12 ? aWidth : 0;
+		
+		NSInteger hour = (midnight + position) % 24;
+		
+		CGContextAddArc(aContext, centerPoint.x, centerPoint.y, outerRadius - radiusInset, lesserAngle, biggerAngle, 0);
+		CGContextAddArc(aContext, centerPoint.x, centerPoint.y, innerRadius - radiusInset, biggerAngle, lesserAngle, 1);
+		CGContextSetFillColorWithColor(aContext, [self CGColorForHour:hour]);
+		CGContextSetStrokeColorWithColor(aContext, [self CGColorForHour:hour]);
+		CGContextDrawPath(aContext, kCGPathFillStroke);
+		CGContextFillPath(aContext);
+
+		if (hour == thisHour) {
+			lesserAngle += pieceAngle / 2.5;
+			biggerAngle -= pieceAngle / 2.5;
+			CGContextMoveToPoint(aContext, centerPoint.x, centerPoint.y);
+			CGContextAddArc(aContext, centerPoint.x, centerPoint.y, fullRadius, lesserAngle, biggerAngle, 0);
+			CGContextFillPath(aContext);
+		}
+
 	
+	}
 }
 
 + (void)drawClockInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate {
@@ -142,6 +174,7 @@ static NSArray *S_colorNameArray = nil;
 					radius, baseAngle + M_PI / 180.0 * percentFill * 360.0, baseAngle, 1);
 	CGContextAddLineToPoint(aContext, centerPoint.x, centerPoint.y);
 	CGContextClosePath(aContext);
+//	CGContextDrawPath(aContext, kCGPathFillStroke);
 	CGContextFillPath(aContext);
 }
 

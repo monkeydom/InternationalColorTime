@@ -16,5 +16,5 @@
 + (NSString *)hourNameForDate:(NSDate *)aDate;
 + (NSDateComponents *)UTCDateComponentsForDate:(NSDate *)aDate;
 + (void)drawClockInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate;
-+ (void)drawHourRingInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate;
++ (void)drawHourRingInRect:(CGRect)aRect width:(CGFloat)aWidth context:(CGContextRef)aContext date:(NSDate *)aDate;
 @end
