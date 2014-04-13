@@ -112,6 +112,10 @@ static NSArray *S_colorNameArray = nil;
 }
 
 
++ (void)drawHourRingInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate {
+	
+}
+
 + (void)drawClockInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate {
 	// extract the necessary information
     NSDateComponents *utcComponents = [self UTCDateComponentsForDate:aDate];

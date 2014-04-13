@@ -53,6 +53,11 @@
 	/**/
 }
 
+- (BOOL)applicationOpenUntitledFile:(NSApplication *)sender {
+	[self.window makeKeyAndOrderFront:self];
+	return YES;
+}
+
 - (IBAction)menuItemAction:(id)aSender {
 	NSLog(@"%s %@",__FUNCTION__,aSender);
 }
