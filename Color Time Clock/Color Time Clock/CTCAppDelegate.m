@@ -14,6 +14,12 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	// Insert code here to initialize your application
+
+	dispatch_block_t hundredthBlock = [CTCUpdateHelper executeBlock:^{
+		NSLog(@"%s hundredth %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
+	} andScheduleWithGranulatrity:kCTCUpdateGranularityHundredth];
+	
+
 	
 	dispatch_block_t tenthBlock = [CTCUpdateHelper executeBlock:^{
 		NSLog(@"%s tenth %0.6f",__FUNCTION__,[NSDate timeIntervalSinceReferenceDate]);
@@ -21,6 +27,7 @@
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		[CTCUpdateHelper cancelRegularExecutionOfBlock:tenthBlock];
+		[CTCUpdateHelper cancelRegularExecutionOfBlock:hundredthBlock];
 	});
 	
 	[CTCUpdateHelper executeBlock:^{
