@@ -122,7 +122,7 @@ static NSArray *S_colorNameArray = nil;
 	CGFloat pieceAngle = 360.0 / 12.0 * M_PI/180.0;
 	CGPoint centerPoint = CGPointMake(CGRectGetMidX(aRect), CGRectGetMidY(aRect));
 	for (NSInteger position=23; position >= 0; position--) {
-		CGFloat lesserAngle = baseAngle + (position - 0.5) * pieceAngle;
+		CGFloat lesserAngle = baseAngle + (position - 0.5 + 0.5) * pieceAngle;
 		CGFloat biggerAngle = lesserAngle + pieceAngle;
 		CGFloat radiusInset = position >= 12 ? aWidth : 0;
 		
@@ -133,18 +133,31 @@ static NSArray *S_colorNameArray = nil;
 		CGContextSetFillColorWithColor(aContext, [self CGColorForHour:hour]);
 		CGContextSetStrokeColorWithColor(aContext, [self CGColorForHour:hour]);
 		CGContextDrawPath(aContext, kCGPathFillStroke);
-		CGContextFillPath(aContext);
-
-		if (hour == thisHour) {
-			lesserAngle += pieceAngle / 2.5;
-			biggerAngle -= pieceAngle / 2.5;
-			CGContextMoveToPoint(aContext, centerPoint.x, centerPoint.y);
-			CGContextAddArc(aContext, centerPoint.x, centerPoint.y, fullRadius, lesserAngle, biggerAngle, 0);
-			CGContextFillPath(aContext);
-		}
+	}
+	
+	// draw this hour on top of everything
+	
+	CGFloat angleWidth = pieceAngle / 5.0;
+	CGFloat lesserAngle = baseAngle + (((thisHour - midnight + 24) % 24) - 0.5 + 0.5) * pieceAngle;
+	CGFloat percentOfHourThrough = [self UTCDateComponentsForDate:aDate].minute / 60.0;
+	lesserAngle += percentOfHourThrough * pieceAngle;
+	
+	lesserAngle += (angleWidth / 2.0);
+	CGFloat biggerAngle = lesserAngle - angleWidth;
+	
+	CGContextMoveToPoint(aContext, centerPoint.x, centerPoint.y);
+	CGContextAddArc(aContext, centerPoint.x, centerPoint.y, fullRadius, lesserAngle, biggerAngle, 1);
 
 	
-	}
+	CGColorRef color1 = [self CGColorForHour:thisHour];
+	CGColorRef color2 = [self CGColorForHour:(thisHour + 1) % 24];
+	NSColor *blendedColor = [[NSColor colorWithCGColor:color1] blendedColorWithFraction:percentOfHourThrough ofColor:[NSColor colorWithCGColor:color2]];
+
+	CGContextSetFillColorWithColor(aContext, blendedColor.CGColor);
+	CGContextSetStrokeColorWithColor(aContext, blendedColor.CGColor);
+	CGContextDrawPath(aContext, kCGPathFillStroke);
+	
+	
 }
 
 + (void)drawClockInRect:(CGRect)aRect context:(CGContextRef)aContext date:(NSDate *)aDate {
