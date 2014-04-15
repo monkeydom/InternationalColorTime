@@ -106,7 +106,7 @@ static NSArray *S_colorNameArray = nil;
 
 + (NSString *)timeStringForDate:(NSDate *)aDate {
     NSDateComponents *components = [self UTCDateComponentsForDate:aDate];
-	NSString *result = [NSString stringWithFormat:@"%@ : %02ld",[self nameForHour:components.hour],components.minute];
+	NSString *result = [NSString stringWithFormat:@"%@:%02ld:%@",[self nameForHour:components.hour],components.minute,[self nameForHour:(components.hour + 1) % 24 ]];
 	return result;
 }
 
@@ -172,22 +172,37 @@ static NSArray *S_colorNameArray = nil;
 	// draw
 	CGColorRef firstColor = [CTCReference CGColorForHour:currentHour];
 	CGColorRef secondColor = [CTCReference CGColorForHour:nextHour];
+	CGPoint centerPoint = CGPointMake(CGRectGetMidX(aRect), CGRectGetMidY(aRect));
+	CGFloat radius = floor(ABS(CGRectGetMaxY(aRect)-centerPoint.y) * 0.90);
+
+	CGContextSetShadow(aContext, CGSizeMake(0.0, 0.0), (CGRectGetWidth(aRect) / 2.0 - radius) / 2.0);
 	
 	CGContextSetFillColorWithColor(aContext, firstColor);
 	CGContextFillEllipseInRect(aContext, aRect);
 	
-	CGPoint centerPoint = CGPointMake(CGRectGetMidX(aRect), CGRectGetMidY(aRect));
 	CGFloat baseAngle = 270 * M_PI/180.0;
 	CGContextSetFillColorWithColor(aContext, secondColor);
 	CGContextBeginPath(aContext);
 	CGContextMoveToPoint(aContext, centerPoint.x, centerPoint.y);
 	//	CGContextAddLineToPoint(aContext, centerPoint.x, CGRectGetMinY(aRect));
-	CGFloat radius = floor(ABS(CGRectGetMaxY(aRect)-centerPoint.y) * 0.90);
+
 	CGContextAddArc(aContext, centerPoint.x, centerPoint.y,
 					radius, baseAngle + M_PI / 180.0 * percentFill * 360.0, baseAngle, 1);
 	CGContextAddLineToPoint(aContext, centerPoint.x, centerPoint.y);
 	CGContextClosePath(aContext);
 //	CGContextDrawPath(aContext, kCGPathFillStroke);
+	if (NO) {
+		CGPathRef path = CGContextCopyPath(aContext);
+		CGContextSaveGState(aContext);
+		CGContextSetStrokeColor(aContext, (CGFloat[4]){0.0,0.0,0.0,0.4});
+		CGContextStrokePath(aContext);
+		CGContextRestoreGState(aContext);
+		
+		CGContextAddPath(aContext, path);
+		CFRelease(path);
+	}
+	
+	CGContextSetFillColorWithColor(aContext, secondColor);
 	CGContextFillPath(aContext);
 }
 

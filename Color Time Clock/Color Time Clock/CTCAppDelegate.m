@@ -13,6 +13,7 @@
 
 @interface CTCAppDelegate ()
 @property (strong) IBOutlet NSTextField *menuExtraTextField;
+@property (strong) IBOutlet NSTextField *menuExtraLeftTextField;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (strong) IBOutlet NSView *menuExtraView;
 @property (strong) IBOutlet NSImageView *menuExtraImageView;
@@ -59,7 +60,8 @@
 }
 
 - (IBAction)menuItemAction:(id)aSender {
-	NSLog(@"%s %@",__FUNCTION__,aSender);
+	//	NSLog(@"%s %@",__FUNCTION__,aSender);
+	[self.window makeKeyAndOrderFront:self];
 }
 
 - (void)updateDisplayForDate:(NSDate *)aDate {
@@ -81,7 +83,7 @@
 	NSImage *statusResult = [NSImage imageWithSize:NSMakeSize(16, 16) flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
 		CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
 		CGContextClearRect(context, dstRect);
-		[CTCReference drawClockInRect:NSRectToCGRect(NSInsetRect(dstRect,0.5,0.5))
+		[CTCReference drawClockInRect:NSRectToCGRect(NSInsetRect(dstRect,1,1))
 							  context:context
 								 date:aDate];
 		return YES;
@@ -89,8 +91,9 @@
 
 	
 	self.menuExtraImageView.image = statusResult;
-	self.menuExtraTextField.stringValue = [CTCReference hourNameForDate:aDate];
-	
+	NSDateComponents *components = [CTCReference UTCDateComponentsForDate:aDate];
+	self.menuExtraLeftTextField.stringValue = [CTCReference nameForHour:components.hour];
+	self.menuExtraTextField.stringValue = [CTCReference nameForHour:(components.hour + 1) % 24];
 	NSString *timeString = [CTCReference timeStringForDate:aDate];
 	self.topStatusItemMenuItem.title = timeString;
 	self.leftLabel.stringValue = timeString;
